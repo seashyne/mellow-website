@@ -1,0 +1,51 @@
+:root {
+  /* สีหลักตามโลโก้ */
+  --ifm-color-primary: #38bdf8;
+  --ifm-color-primary-dark: #0ea5e9;
+  --ifm-color-primary-darker: #0284c7;
+  --ifm-color-primary-darkest: #0369a1;
+  --ifm-color-primary-light: #7dd3fc;
+  --ifm-color-primary-lighter: #bae6fd;
+  --ifm-color-primary-lightest: #e0f2fe;
+
+  /* พื้นหลัง */
+  --ifm-background-color: #0f172a;
+  --ifm-navbar-background-color: #0f172a;
+  --ifm-footer-background-color: #0f172a;
+  
+  /* ข้อความ */
+  --ifm-font-color-base: #e2e8f0;
+  --ifm-heading-color: #f8fafc;
+
+  /* สีพิเศษ */
+  --mellow-yellow: #fbbf24;
+  --mellow-green: #4ade80;
+  --mellow-ai-color: #f472b6;
+}
+
+/* ปรับปุ่ม */
+.button--primary {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%) !important;
+  border: none !important;
+  color: #0f172a !important;
+  font-weight: bold !important;
+}
+
+.button--secondary {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+  border: 2px solid #38bdf8 !important;
+  color: #38bdf8 !important;
+}
+
+/* Navbar */
+.navbar {
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #1e293b;
+}
+
+/* Code blocks */
+pre {
+  background: #0f172a !important;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+}

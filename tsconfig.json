@@ -1,0 +1,10 @@
+{
+  "extends": "@docusaurus/tsconfig",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "types": ["@docusaurus/module-type-aliases", "@docusaurus/theme-classic"]
+  },
+  "include": ["src", "docs", "blog", "docusaurus.config.ts", "sidebars.ts", "global.d.ts"],
+  "exclude": [".docusaurus", "build", "node_modules"]
+}
