@@ -11,7 +11,7 @@ const config: Config = {
   baseUrl: '/',
 
   organizationName: 'seashyne',
-  projectName: 'mellowlang',
+  projectName: 'mellow-programming-language',
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -35,7 +35,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          editUrl: 'https://github.com/seashyne/Mellowlang',
+          editUrl: 'https://github.com/seashyne/mellow-programming-language',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -57,7 +57,7 @@ const config: Config = {
         { to: '/roadmap', label: 'Roadmap', position: 'left' },
         { to: '/donate', label: 'Support', position: 'left' },
         { type: 'localeDropdown', position: 'right' },
-        { href: 'https://github.com/seashyne/Mellowlang', label: 'GitHub', position: 'right' },
+        { href: 'https://github.com/seashyne/mellow-programming-language', label: 'GitHub', position: 'right' },
       ],
     },
     footer: {
@@ -73,7 +73,7 @@ const config: Config = {
         },
         {
           title: 'Community',
-          items: [{ label: 'GitHub', href: 'https://github.com/seashyne/Mellowlang' }],
+          items: [{ label: 'Language source', href: 'https://github.com/seashyne/mellow-programming-language' }],
         },
       ],
       copyright: `© ${new Date().getFullYear()} Mellow Language Project. Built with ❤️ by Seashyne.`,

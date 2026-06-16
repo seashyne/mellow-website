@@ -5,9 +5,11 @@ title: Installation
 
 # Installation
 
-From a source checkout:
+Clone the language source, then install from the checkout:
 
 ```powershell
+git clone https://github.com/seashyne/mellow-programming-language.git
+cd mellow-programming-language
 python -m pip install -e .[dev]
 mellow --version
 mellow run examples\hello.mellow

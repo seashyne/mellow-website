@@ -88,6 +88,7 @@ const USE_CASE_LIST: UseCaseItem[] = [
 ];
 
 const LATEST_VERSION = 'v2.9.2';
+const SOURCE_REPO = 'https://github.com/seashyne/mellow-programming-language';
 const RELEASE_ITEMS: ReleaseItem[] = [
   {
     label: 'Security',
@@ -249,11 +250,11 @@ export default function Home(): React.JSX.Element {
 
               <Link
                 className={clsx('button button--outline button--lg', styles.heroButton)}
-                to="https://github.com/seashyne/Mellowlang"
+                to={SOURCE_REPO}
                 target="_blank"
                 rel="noreferrer"
               >
-                Download CLI
+                Source repo
               </Link>
             </div>
           </div>
@@ -515,6 +516,14 @@ mellow release-gate`}</code>
               </Link>
               <Link className={clsx('button button--outline button--lg', styles.ctaButton)} to="/playground">
                 🧪 Playground
+              </Link>
+              <Link
+                className={clsx('button button--outline button--lg', styles.ctaButton)}
+                to={SOURCE_REPO}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Source repo
               </Link>
               <Link className={clsx('button button--outline button--lg', styles.ctaButton)} to="/donate">
                 Support
