@@ -22,57 +22,59 @@ type UseCaseItem = {
 
 const FEATURE_LIST: FeatureItem[] = [
   {
-    title: '🤖 AI & Steering',
+    title: '🧩 Stable Core',
     description:
-      'AI Module ในตัว รองรับ Steering Behaviors (Seek, Flee, Patrol) และ Perception (Sight, Range)',
-    icon: '🧠',
+      'Mellow 2.9.2 ล็อก surface หลัก: let, def, if/while/for, range, list/map literals และ helpers ที่ใช้จริงใน production scripts',
+    icon: '🧩',
     color: '#f472b6',
   },
   {
-    title: '🎮 Game-Ready',
+    title: '⚙️ Native by Default',
     description:
-      'Game utilities เช่น astar, easing, grid helpers — เรียกใช้ได้ง่ายสำหรับเกม',
-    icon: '🎮',
+      'mellow run ใช้ native C VM เป็นค่าเริ่มต้น พร้อม fallback ไป Python VM เมื่อใช้ debugger, events หรือ record/replay',
+    icon: '⚙️',
     color: '#4ade80',
   },
   {
-    title: '⚡ Python-like',
+    title: '🛡️ Sandboxed Data',
     description:
-      'Indentation-based blocks, ใช้ def สำหรับฟังก์ชัน, let สำหรับตัวแปร เรียนรู้ได้ใน 5 นาที',
-    icon: '🐍',
+      'มี sandbox profile สำหรับ finance/data, money precision, bounded JSONL/CSV, SQLite แบบจำกัด และ immutable ledger primitives',
+    icon: '🛡️',
     color: '#fbbf24',
   },
   {
-    title: '🔒 Deterministic',
+    title: '🚦 Release Gates',
     description:
-      'รองรับ --seed, --record, --replay รันซ้ำได้ผลลัพธ์เหมือนเดิม เหมาะสำหรับเกมและเทส',
-    icon: '🎯',
+      'เพิ่ม mellow bench, mellow security audit และ mellow release-gate สำหรับ benchmark, sandbox checks และ package integrity',
+    icon: '🚦',
     color: '#38bdf8',
   },
 ];
 
 const USE_CASE_LIST: UseCaseItem[] = [
   {
-    title: '🎮 Game Logic',
-    examples: ['NPC behaviors', 'Pathfinding (A*)', 'Dialogue System', 'Event System'],
-    icon: '🎮',
+    title: '🧪 Core Scripts',
+    examples: ['CLI automation', 'Rule scripts', 'Tooling tasks', 'Deterministic tests'],
+    icon: '🧪',
   },
   {
-    title: '🤖 AI Behaviors',
-    examples: ['Steering (Seek/Flee)', 'Perception (Sight/Range)', 'Utility AI', 'Decision Flow'],
-    icon: '🧠',
+    title: '💰 Finance/Data',
+    examples: ['Decimal money', 'Ledger rules', 'JSONL/CSV batches', 'SQLite queries'],
+    icon: '💰',
   },
   {
-    title: '🛠️ Automation',
-    examples: ['CLI tools', 'File processing', 'System scripts', 'Build pipelines'],
-    icon: '🛠️',
+    title: '🤖 AI Tooling',
+    examples: ['Default-deny tools', 'Explicit allow policy', 'Core LLM package', 'Native tensor batching'],
+    icon: '🤖',
   },
   {
-    title: '🛡️ Safe Sandbox',
-    examples: ['Modding support', 'User scripts', 'Restricted access', 'Budget limits'],
-    icon: '🛡️',
+    title: '🚀 Native Runtime',
+    examples: ['C lexer/compiler', 'Bytecode runtime', 'Standalone executable', 'Python fallback'],
+    icon: '🚀',
   },
 ];
+
+const LATEST_VERSION = 'v2.9.2';
 
 function Feature({ title, description, icon, color }: FeatureItem) {
   return (
@@ -116,15 +118,15 @@ export default function Home(): React.JSX.Element {
   const DOC_CAN_DO = '/docs/intro/what-can-mellow-do';
 
   return (
-    <Layout
-      title={`${siteConfig.title} - AI-Native Programming Language`}
-      description="สร้างเกม, AI และแอปพลิเคชันอัจฉริยะได้ง่ายๆ ด้วยภาษาที่เข้าใจคุณ"
+      <Layout
+      title={`${siteConfig.title} - Sandbox Scripting Language`}
+      description="MellowLang 2.9.2 คือ sandbox scripting language สำหรับ games, tools และ AI-era automation"
     >
       <header className={clsx('hero hero--dark', styles.heroBanner)}>
         <div className={styles.heroInner}>
           <div className={styles.heroLeft}>
             <div className={styles.heroBadge}>
-              <span className={styles.badgePulse}>✨</span> v1.4.7
+              <span className={styles.badgePulse}>✨</span> {LATEST_VERSION}
             </div>
 
             <Heading as="h1" className={clsx('hero__title', styles.heroTitle)}>
@@ -132,13 +134,13 @@ export default function Home(): React.JSX.Element {
             </Heading>
 
             <p className={clsx('hero__subtitle', styles.heroSubtitle)}>
-              &quot;Make development simple, expressive, and AI-powered.&quot;
+              &quot;Small, deterministic, auditable scripting for tools, games, and AI-era workflows.&quot;
             </p>
 
             <p className={styles.heroDescription}>
-              ภาษาสคริปต์ที่ปลอดภัยและกำหนดผลลัพธ์ได้ (Deterministic)
+              MellowLang 2.9.2 โฟกัส stable language core, native C runtime,
               <br />
-              สำหรับเกมและ AI
+              sandbox profiles และ release gates ที่ตรวจสอบได้
             </p>
 
             <div className={styles.heroButtons}>
@@ -202,46 +204,46 @@ export default function Home(): React.JSX.Element {
                   💻 Syntax ง่าย เหมือน Python
                 </Heading>
                 <p className={styles.sectionSubtitle}>
-                  ใช้ Indentation, def สำหรับฟังก์ชัน และ let สำหรับตัวแปร
+                  stable core รองรับ let, def, if/while/for, range, list/map literals และ stdlib helpers
                 </p>
 
                 <div className={styles.codeExamples}>
                   <div className={styles.codeExample}>
-                    <h4 style={{ color: '#fbbf24' }}>⚡ Basic Syntax</h4>
+                    <h4 style={{ color: '#fbbf24' }}>⚡ Stable Core</h4>
                     <pre>
                       <code>{`# comment
-let hp = 100
-let name = "Hero"
+let score = 0
 
 def add(a, b):
     return a + b
 
-print(add(2, 3))
+for i in range(0, 6):
+    score = add(score, i)
 
-if hp < 10:
-    print("low health")
-elif hp < 50:
-    print("warning")
-else:
-    print("ok")`}</code>
+print(score)`}</code>
                     </pre>
                   </div>
 
                   <div className={styles.codeExample}>
-                    <h4 style={{ color: '#4ade80' }}>🎮 Game utilities</h4>
+                    <h4 style={{ color: '#4ade80' }}>💰 Money-safe Rules</h4>
                     <pre>
-                      <code>{`let path = astar(grid, [0,0], [3,2])
-let t = ease_in_quad(0.25)
-let wp = neighbors4(x, y, 10, 10)`}</code>
+                      <code>{`let subtotal = money("0.10", "THB")
+let fee = money("0.20", "THB")
+let total = money_add(subtotal, fee)
+
+print(money_format(total))`}</code>
                     </pre>
                   </div>
 
                   <div className={styles.codeExample}>
-                    <h4 style={{ color: '#f472b6' }}>🤖 AI</h4>
+                    <h4 style={{ color: '#f472b6' }}>📊 Bounded Data</h4>
                     <pre>
-                      <code>{`let vel = ai_seek(pos, target, speed)
-let near = ai_in_range(pos, target, 60)
-let closest = ai_nearest(pos, enemies)`}</code>
+                      <code>{`let stream = data_open_jsonl("records.jsonl", 1000)
+let batch = data_next(stream)
+while len(batch) > 0:
+    let sales = data_where(batch, "kind", "==", "sale")
+    print(data_sum(sales, "amount"))
+    batch = data_next(stream)`}</code>
                     </pre>
                   </div>
                 </div>
@@ -249,52 +251,54 @@ let closest = ai_nearest(pos, enemies)`}</code>
 
               <div className="col col--6">
                 <div className={styles.visionCard}>
-                  <h3>🎯 Deterministic by Design</h3>
-                  <p> Mellow ออกแบบมาให้รันซ้ำได้ผลลัพธ์เหมือนเดิม เหมาะสำหรับเกมและ Testing </p>
+                  <h3>🎯 Stable Core in 2.9.2</h3>
+                  <p> MellowLang 2.9.2 treats the language core as the stable surface and keeps larger systems clearly marked as optional or experimental. </p>
                   <ul className={styles.visionList}>
                     <li>
-                      ✅ <code>--seed 123</code> กำหนด Random Seed
+                      ✅ Native C VM is the default for <code>mellow run</code>
                     </li>
                     <li>
-                      ✅ <code>--record run.jsonl</code> บันทึกการรัน
+                      ✅ Python fallback handles debugger, events, and record/replay gaps
                     </li>
                     <li>
-                      ✅ <code>--replay run.jsonl</code> รันซ้ำเหมือนเดิม
+                      ✅ <code>--sandbox=finance</code> and <code>--sandbox=data</code> tighten host access
                     </li>
-                    <li>✅ <code>save/load</code> ระบบเก็บสถานะในตัว</li>
+                    <li>✅ AI tools are default-deny unless explicitly allowed</li>
                   </ul>
                 </div>
 
                 <div className={styles.cliCard}>
                   <h3>🖥️ CLI Usage</h3>
                   <pre>
-                    <code>{`mellow run game.mellow
-mellow run game.mellow --seed 123
-mellow run game.mellow --record out.jsonl
-mellow run game.mellow --replay out.jsonl
-mellow check game.mellow
-mellow modules`}</code>
+                    <code>{`mellow --version
+mellow run examples/hello.mellow
+mellow check examples/hello.mellow
+mellow run rules.mellow --sandbox=finance
+mellow run job.mellow --sandbox=data
+mellow bench
+mellow security audit
+mellow release-gate`}</code>
                   </pre>
                 </div>
 
                 <div className={styles.statsCard}>
                   <div className={styles.statItem}>
                     <span className={styles.statNumber} style={{ color: '#fbbf24' }}>
-                      v1.4.7
+                      {LATEST_VERSION}
                     </span>
                     <span className={styles.statLabel}>Latest</span>
                   </div>
                   <div className={styles.statItem}>
                     <span className={styles.statNumber} style={{ color: '#4ade80' }}>
-                      10+
+                      C VM
                     </span>
-                    <span className={styles.statLabel}>Modules</span>
+                    <span className={styles.statLabel}>Default Engine</span>
                   </div>
                   <div className={styles.statItem}>
                     <span className={styles.statNumber} style={{ color: '#38bdf8' }}>
-                      ∞
+                      3
                     </span>
-                    <span className={styles.statLabel}>Possibilities</span>
+                    <span className={styles.statLabel}>Release Gates</span>
                   </div>
                 </div>
               </div>
@@ -308,7 +312,7 @@ mellow modules`}</code>
               <Heading as="h2" className={styles.sectionTitle}>
                 🚀 ใช้ Mellow สร้างอะไรได้บ้าง?
               </Heading>
-              <p className={styles.sectionSubtitle}>จากเกมไปจนถึง AI workflow</p>
+              <p className={styles.sectionSubtitle}>จาก scripts ขนาดเล็ก ไปจนถึง data, finance และ AI tooling ที่ต้องตรวจสอบได้</p>
             </div>
             <div className="row">
               {USE_CASE_LIST.map((props, idx) => (

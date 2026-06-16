@@ -14,60 +14,47 @@ const SAMPLE_CODES = {
   hello: `# Hello Mellow
 print("Hello, Mellow World!")`,
 
-  variables: `# ตัวแปรและประเภทข้อมูล
-let hp = 100
-let name = "Hero"
-let alive = true
+  core: `# Stable Core
+let score = 0
 
-print(f"Name: {name}, HP: {hp}")`,
-
-  functions: `# ฟังก์ชัน
 def add(a, b):
     return a + b
 
-def greet(name):
-    print("Hello, " + name)
+for i in range(0, 6):
+    score = add(score, i)
 
-let result = add(5, 3)
-greet("Mellow")
-print(f"Result: {result}")`,
+print(score)`,
 
-  conditionals: `# เงื่อนไข
-let hp = 50
+  money: `# Money-safe rules
+let subtotal = money("0.10", "THB")
+let fee = money("0.20", "THB")
+let total = money_add(subtotal, fee)
 
-if hp < 10:
-    print("Critical!")
-elif hp < 50:
-    print("Warning")
-else:
-    print("OK")`,
+print(money_format(total))`,
 
-  loops: `# ลูป
-for i in range(0, 5):
-    print(f"Count: {i}")
+  data: `# Bounded data processing
+let stream = data_open_jsonl("records.jsonl", 1000)
+let batch = data_next(stream)
 
-let j = 0
-while j < 3:
-    print(f"While: {j}")
-    j = j + 1`,
+while len(batch) > 0:
+    let sales = data_where(batch, "kind", "==", "sale")
+    print(data_sum(sales, "amount"))
+    batch = data_next(stream)`,
 
-  game: `# Game Module (v1.4.7)
-let grid = [[0,0,0,0],[0,1,0,0],[0,0,0,0]]
-let x = 1
-let y = 1
-let path = astar(grid, [0,0], [3,2])
-let t = ease_in_quad(0.25)
-let wp = neighbors4(x, y, 10, 10)
+  ledger: `# Immutable ledger
+let book = ledger_create("THB")
+book = ledger_post(
+    book,
+    "sale-001",
+    [
+        {"account": "cash", "amount": "100.00"},
+        {"account": "revenue", "amount": "-100.00"}
+    ],
+    "cash sale"
+)
 
-print(f"Path: {path}")
-print(f"Easing: {t}")`,
-
-  ai: `# AI Module
-let vel = ai_seek([100,100], [200,200], 3.0)
-let can_see = ai_in_sight([100,100], 0, [150,150], 120, 150)
-
-print(f"Velocity: {vel}")
-print(f"Can See: {can_see}")`,
+print(money_format(ledger_balance(book, "cash")))
+print(ledger_verify(book)["ok"])`,
 };
 
 // --- Main Component ---
@@ -184,12 +171,10 @@ export default function Playground(): React.JSX.Element {
               className={styles.select}
             >
               <option value="hello">Hello World</option>
-              <option value="variables">ตัวแปร</option>
-              <option value="functions">ฟังก์ชัน</option>
-              <option value="conditionals">เงื่อนไข</option>
-              <option value="loops">ลูป</option>
-              <option value="game">Game Module</option>
-              <option value="ai">AI Module</option>
+              <option value="core">Stable Core</option>
+              <option value="money">Money</option>
+              <option value="data">Data</option>
+              <option value="ledger">Ledger</option>
             </select>
           </div>
 
@@ -286,7 +271,19 @@ export default function Playground(): React.JSX.Element {
               <span>เงื่อนไข</span>
             </div>
             <div className={styles.referenceCard}>
-              <code>{`for i in range(5):`}</code>
+              <code>{`mellow run app.mellow`}</code>
+              <span>รัน</span>
+            </div>
+            <div className={styles.referenceCard}>
+              <code>{`--sandbox=data`}</code>
+              <span>data sandbox</span>
+            </div>
+            <div className={styles.referenceCard}>
+              <code>{`mellow release-gate`}</code>
+              <span>release gate</span>
+            </div>
+            <div className={styles.referenceCard}>
+              <code>{`for i in range(0, 5):`}</code>
               <span>ลูป</span>
             </div>
           </div>

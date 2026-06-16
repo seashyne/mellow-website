@@ -5,20 +5,32 @@ title: Installation
 
 # Installation
 
-Install the Mellow CLI:
+From a source checkout:
 
-```bash
-https://github.com/seashyne/Mellowlang
-```
-
-Verify installation:
-
-```bash
+```powershell
+python -m pip install -e .[dev]
 mellow --version
+mellow run examples\hello.mellow
+mellow check examples\hello.mellow
+mellow doctor
 ```
 
-Run a script:
+Without installing:
 
-```bash
-mellow run script.mellow
+```powershell
+$env:PYTHONPATH = "src"
+python -m mellowlang --version
+python -m mellowlang run examples\hello.mellow
+```
+
+Native C is the default execution engine in MellowLang 2.9.2. Use `--engine=py` to force the Python VM.
+
+Optional features can be installed only when needed:
+
+```powershell
+python -m pip install -e .[lsp]
+python -m pip install -e .[net]
+python -m pip install -e .[security]
+python -m pip install -e .[video]
+python -m pip install -e .[all]
 ```
