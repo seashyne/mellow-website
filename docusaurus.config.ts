@@ -17,8 +17,16 @@ const config: Config = {
   onBrokenMarkdownLinks: 'warn',
 
   i18n: {
-    defaultLocale: 'th',
-    locales: ['th', 'en'],
+    defaultLocale: 'en',
+    locales: ['en', 'th'],
+    localeConfigs: {
+      en: {
+        label: 'English',
+      },
+      th: {
+        label: 'ไทย',
+      },
+    },
   },
 
   presets: [
@@ -44,10 +52,11 @@ const config: Config = {
         src: 'img/Logo.png',
       },
       items: [
-        { type: 'docSidebar', sidebarId: 'tutorialSidebar', position: 'left', label: 'เอกสาร' },
+        { type: 'docSidebar', sidebarId: 'tutorialSidebar', position: 'left', label: 'Docs' },
         { to: '/playground', label: 'Playground', position: 'left' },
         { to: '/roadmap', label: 'Roadmap', position: 'left' },
-        { to: '/donate', label: 'สนับสนุน', position: 'left' },
+        { to: '/donate', label: 'Support', position: 'left' },
+        { type: 'localeDropdown', position: 'right' },
         { href: 'https://github.com/seashyne/Mellowlang', label: 'GitHub', position: 'right' },
       ],
     },
@@ -55,15 +64,15 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'เอกสาร',
+          title: 'Docs',
           items: [
-            { label: 'เริ่มต้นใช้งาน', to: '/docs/intro/what-is-mellow' },
+            { label: 'Start here', to: '/docs/intro/what-is-mellow' },
             { label: 'Syntax', to: '/docs/language/syntax' },
             { label: 'Playground', to: '/playground' },
           ],
         },
         {
-          title: 'ชุมชน',
+          title: 'Community',
           items: [{ label: 'GitHub', href: 'https://github.com/seashyne/Mellowlang' }],
         },
       ],

@@ -1,6 +1,6 @@
 # Mellow Website
 
-เว็บไซต์เอกสารของ Mellow สร้างด้วย [Docusaurus](https://docusaurus.io/) และ React/TypeScript
+Documentation website for Mellow, built with [Docusaurus](https://docusaurus.io/) and React/TypeScript.
 
 ## Installation
 

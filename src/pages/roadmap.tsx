@@ -5,14 +5,14 @@ import styles from './index.module.css';
 
 export default function Roadmap(): React.JSX.Element {
   return (
-    <Layout title="Roadmap" description="แผนการพัฒนา Mellow">
+    <Layout title="Roadmap" description="Mellow development roadmap">
       <main className={styles.pageMain}>
         <div className={styles.pageHeader}>
           <Heading as="h1" className={styles.pageTitle}>
             🗺️ Roadmap
           </Heading>
           <p className={styles.pageLead}>
-            สถานะการพัฒนา MellowLang จาก release notes และ stability plan ของโปรเจกต์จริง
+            A short, readable view of the current release, previous milestone, and next stability track.
           </p>
         </div>
 
@@ -28,7 +28,7 @@ export default function Roadmap(): React.JSX.Element {
               <h3 style={{ margin: 0, fontWeight: 900 }}>v2.9.2</h3>
             </div>
             <p style={{ marginTop: '0.75rem', color: '#94a3b8', lineHeight: 1.7 }}>
-              เพิ่ม <code>mellow bench</code>, <code>mellow security audit</code> และ <code>mellow release-gate</code> พร้อม AI tool policy แบบ default-deny, sandbox checks และ package integrity gate
+              Adds <code>mellow bench</code>, <code>mellow security audit</code>, and <code>mellow release-gate</code>, plus default-deny AI tool policy, sandbox checks, and package integrity gates.
             </p>
           </div>
 
@@ -43,7 +43,7 @@ export default function Roadmap(): React.JSX.Element {
               <h3 style={{ margin: 0, fontWeight: 900 }}>v2.9.1</h3>
             </div>
             <p style={{ marginTop: '0.75rem', color: '#94a3b8', lineHeight: 1.7 }}>
-              เพิ่ม official <code>core-llm</code>, native tensor backend foundation, compiler cache, fast CLI version path และทำให้ native C VM เป็น default engine สำหรับ <code>mellow run</code>
+              Adds the official <code>core-llm</code> package, native tensor backend foundations, compiler caching, a faster CLI version path, and native C VM as the default engine for <code>mellow run</code>.
             </p>
           </div>
 
@@ -58,7 +58,7 @@ export default function Roadmap(): React.JSX.Element {
               <h3 style={{ margin: 0, fontWeight: 900 }}>v3.0</h3>
             </div>
             <p style={{ marginTop: '0.75rem', color: '#94a3b8', lineHeight: 1.7 }}>
-              แผนถัดไปคือ v3 stability track: ล็อก contract ของภาษา, tooling, modules/packages, error behavior และตัวอย่างที่ต้องผ่าน gate เดียวกัน
+              The next track focuses on locking the language contract, tooling behavior, modules and packages, error behavior, and examples behind the same gates.
             </p>
           </div>
         </div>

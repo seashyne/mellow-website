@@ -149,21 +149,21 @@ export default function Playground(): React.JSX.Element {
   return (
     <Layout
       title="Playground"
-      description="ลองเขียนโค้ด Mellow ออนไลน์"
+      description="Try Mellow syntax in the browser"
     >
       <main className={styles.playgroundContainer}>
         <div className={styles.header}>
           <Heading as="h1" className={styles.title}>
-            🎮 Mellow Playground
+            Mellow Playground
           </Heading>
           <p className={styles.subtitle}>
-            ลองเขียนและรันโค้ด Mellow ได้ทันทีในเบราว์เซอร์
+            Explore the shape of Mellow code before installing the CLI.
           </p>
         </div>
 
         <div className={styles.toolbar}>
           <div className={styles.sampleSelector}>
-            <label htmlFor="sample">📚 ตัวอย่าง:</label>
+            <label htmlFor="sample">Sample:</label>
             <select
               id="sample"
               value={selectedSample}
@@ -184,14 +184,14 @@ export default function Playground(): React.JSX.Element {
               className={styles.buttonSecondary}
               disabled={isRunning}
             >
-              🗑️ ล้าง
+              Clear
             </button>
             <button
               onClick={runCode}
               className={styles.buttonPrimary}
               disabled={isRunning}
             >
-              {isRunning ? "⏳ กำลังรัน..." : "▶️ รันโค้ด"}
+              {isRunning ? "Running..." : "Run code"}
             </button>
           </div>
         </div>
@@ -208,7 +208,7 @@ export default function Playground(): React.JSX.Element {
               value={code}
               onChange={(e) => setCode(e.target.value)}
               spellCheck={false}
-              placeholder="พิมพ์โค้ด Mellow ที่นี่..."
+              placeholder="Type Mellow code here..."
             />
           </div>
 
@@ -223,7 +223,7 @@ export default function Playground(): React.JSX.Element {
             <div className={styles.outputConsole}>
               {output.length === 0 ? (
                 <div className={styles.emptyOutput}>
-                  <span>👈 กดปุ่ม "รันโค้ด" เพื่อดูผลลัพธ์</span>
+                  <span>Run a sample to see output here.</span>
                 </div>
               ) : (
                 output.map((item, idx) => (
@@ -252,27 +252,27 @@ export default function Playground(): React.JSX.Element {
           <div className={styles.referenceGrid}>
             <div className={styles.referenceCard}>
               <code>{`let x = 10`}</code>
-              <span>ตัวแปร</span>
+              <span>variable</span>
             </div>
             <div className={styles.referenceCard}>
               <code>{`def func():`}</code>
-              <span>ฟังก์ชัน</span>
+              <span>function</span>
             </div>
             <div className={styles.referenceCard}>
               <code>{`# comment`}</code>
-              <span>คอมเมนต์</span>
+              <span>comment</span>
             </div>
             <div className={styles.referenceCard}>
               <code>{`print("hi")`}</code>
-              <span>พิมพ์</span>
+              <span>print</span>
             </div>
             <div className={styles.referenceCard}>
               <code>{`if x < 10:`}</code>
-              <span>เงื่อนไข</span>
+              <span>condition</span>
             </div>
             <div className={styles.referenceCard}>
               <code>{`mellow run app.mellow`}</code>
-              <span>รัน</span>
+              <span>run</span>
             </div>
             <div className={styles.referenceCard}>
               <code>{`--sandbox=data`}</code>
@@ -284,7 +284,7 @@ export default function Playground(): React.JSX.Element {
             </div>
             <div className={styles.referenceCard}>
               <code>{`for i in range(0, 5):`}</code>
-              <span>ลูป</span>
+              <span>loop</span>
             </div>
           </div>
         </div>
@@ -293,14 +293,13 @@ export default function Playground(): React.JSX.Element {
         <div className={styles.infoBanner}>
           <span className={styles.infoIcon}>ℹ️</span>
           <div className={styles.infoContent}>
-            <strong>หมายเหตุ:</strong> Playground นี้เป็นแบบจำลองสำหรับการสาธิต
-            สำหรับการรันโค้ดจริง กรุณาติดตั้ง Mellow CLI บนเครื่องของคุณ
+            <strong>Note:</strong> This playground is a lightweight demo. Install the Mellow CLI to run real scripts locally.
           </div>
           <a
             href="/docs/intro/installation"
             className={styles.infoLink}
           >
-            ติดตั้ง CLI →
+            Install CLI →
           </a>
         </div>
       </main>

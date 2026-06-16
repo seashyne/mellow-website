@@ -8,13 +8,13 @@ import donation from '../data/donations.json';
 
 function formatMoney(amount: number, currency: string) {
   try {
-    return new Intl.NumberFormat('th-TH', {
+    return new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency,
       maximumFractionDigits: 0,
     }).format(amount);
   } catch {
-    return `${amount.toLocaleString('th-TH')} ${currency}`;
+    return `${amount.toLocaleString('en-US')} ${currency}`;
   }
 }
 
@@ -26,15 +26,14 @@ export default function Donate(): React.JSX.Element {
   const cryptoWalletAddress = '';
 
   return (
-    <Layout title="สนับสนุน" description="สนับสนุนการพัฒนา Mellow">
+    <Layout title="Support" description="Support Mellow development">
       <main className={styles.pageMain}>
         <div className={styles.pageHeader}>
           <Heading as="h1" className={styles.pageTitle}>
-            💖 สนับสนุนโปรเจกต์
+            Support the Project
           </Heading>
           <p className={styles.pageLead}>
-            การพัฒนา Mellow ต้องใช้เวลาและทรัพยากร หากคุณชอบโปรเจกต์นี้
-            การสนับสนุนของคุณช่วยให้พัฒนาได้เร็วและไกลขึ้น
+            Mellow is an independent language project. Support helps keep the runtime, docs, tests, and examples moving forward.
           </p>
         </div>
 
@@ -42,22 +41,22 @@ export default function Donate(): React.JSX.Element {
           <div className={styles.card}>
             <div className={styles.donateHeaderRow}>
               <div>
-                <h2 className={styles.donateH2}>ยอดสนับสนุนรวม</h2>
+                <h2 className={styles.donateH2}>Funding Progress</h2>
                 <p className={styles.donateMeta}>
-                  อัปเดตล่าสุด: <strong>{donation.lastUpdated || '-'}</strong>
+                  Last updated: <strong>{donation.lastUpdated || '-'}</strong>
                 </p>
               </div>
-              <span className={styles.donateBadge}>🎯 เป้าหมาย {formatMoney(goal, currency)}</span>
+              <span className={styles.donateBadge}>Goal {formatMoney(goal, currency)}</span>
             </div>
 
             <div className={styles.donateNumbers}>
               <div className={styles.donateNumberBox}>
                 <div className={styles.donateBig}>{formatMoney(raised, currency)}</div>
-                <div className={styles.donateSmall}>ได้รับแล้ว</div>
+                <div className={styles.donateSmall}>Raised</div>
               </div>
               <div className={styles.donateNumberBox}>
                 <div className={styles.donateBig}>{pct}%</div>
-                <div className={styles.donateSmall}>ความคืบหน้า</div>
+                <div className={styles.donateSmall}>Complete</div>
               </div>
             </div>
 
@@ -69,15 +68,15 @@ export default function Donate(): React.JSX.Element {
           </div>
 
           <div className={styles.card}>
-            <h2 className={styles.donateH2}>เงินสนับสนุนถูกใช้เพื่อ</h2>
+            <h2 className={styles.donateH2}>Support helps with</h2>
             <ul className={styles.donateList}>
-              <li>📦 พัฒนา CLI / Runtime ให้เสถียรขึ้น</li>
-              <li>🧪 เพิ่ม Test Suite และ CI</li>
-              <li>📚 ทำเอกสารไทย + ตัวอย่างโปรเจกต์</li>
-              <li>🛡️ เพิ่ม Sandbox/Deterministic tools</li>
+              <li>CLI and runtime stability</li>
+              <li>Test suites and CI coverage</li>
+              <li>Documentation and runnable examples</li>
+              <li>Sandbox and release-gate tooling</li>
             </ul>
             <p className={styles.mutedNote} style={{ marginTop: '1rem', textAlign: 'left' }}>
-              ขอบคุณมากครับ ❤️ ทุกบาทช่วยให้ Mellow ไปได้ไกลขึ้น
+              Thank you for helping Mellow keep moving.
             </p>
           </div>
         </div>
@@ -109,15 +108,15 @@ export default function Donate(): React.JSX.Element {
               onClick={() => {
                 if (!cryptoWalletAddress) return;
                 navigator.clipboard.writeText(cryptoWalletAddress);
-                alert('คัดลอกที่อยู่ Wallet แล้ว!');
+                alert('Wallet address copied.');
               }}
             >
-              ₿ Crypto Wallet เร็ว ๆ นี้
+              Crypto Wallet Coming Soon
             </button>
           </div>
 
           <p className={styles.mutedNote}>
-            ถ้าคุณอยากให้ยอดขึ้น “อัตโนมัติ” เราสามารถเชื่อม endpoint (เช่น Vercel Serverless) เพื่อรวมยอดจากหลายช่องทางได้
+            Funding totals are currently updated manually from available support channels.
           </p>
         </div>
       </main>

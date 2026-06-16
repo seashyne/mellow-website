@@ -22,59 +22,76 @@ type UseCaseItem = {
 
 const FEATURE_LIST: FeatureItem[] = [
   {
-    title: '🧩 Stable Core',
+    title: 'Stable core',
     description:
-      'Mellow 2.9.2 ล็อก surface หลัก: let, def, if/while/for, range, list/map literals และ helpers ที่ใช้จริงใน production scripts',
-    icon: '🧩',
+      'Write scripts with familiar basics: let, def, if, while, for, range, lists, maps, and direct function calls.',
+    icon: '✓',
     color: '#f472b6',
   },
   {
-    title: '⚙️ Native by Default',
+    title: 'Native by default',
     description:
-      'mellow run ใช้ native C VM เป็นค่าเริ่มต้น พร้อม fallback ไป Python VM เมื่อใช้ debugger, events หรือ record/replay',
-    icon: '⚙️',
+      'mellow run uses the native C VM first, with Python fallback for features that still need it.',
+    icon: '⚙',
     color: '#4ade80',
   },
   {
-    title: '🛡️ Sandboxed Data',
+    title: 'Safer sandboxes',
     description:
-      'มี sandbox profile สำหรับ finance/data, money precision, bounded JSONL/CSV, SQLite แบบจำกัด และ immutable ledger primitives',
-    icon: '🛡️',
+      'Use finance and data sandboxes to limit file access, database writes, network behavior, and risky host calls.',
+    icon: '□',
     color: '#fbbf24',
   },
   {
-    title: '🚦 Release Gates',
+    title: 'Release checks',
     description:
-      'เพิ่ม mellow bench, mellow security audit และ mellow release-gate สำหรับ benchmark, sandbox checks และ package integrity',
-    icon: '🚦',
+      'Run bench, security audit, and release-gate checks before shipping a runtime or package change.',
+    icon: '→',
     color: '#38bdf8',
   },
 ];
 
 const USE_CASE_LIST: UseCaseItem[] = [
   {
-    title: '🧪 Core Scripts',
-    examples: ['CLI automation', 'Rule scripts', 'Tooling tasks', 'Deterministic tests'],
-    icon: '🧪',
+    title: 'Core scripts',
+    examples: ['CLI tasks', 'Rule scripts', 'Build checks', 'Small automations'],
+    icon: '⌁',
   },
   {
-    title: '💰 Finance/Data',
-    examples: ['Decimal money', 'Ledger rules', 'JSONL/CSV batches', 'SQLite queries'],
-    icon: '💰',
+    title: 'Finance and data',
+    examples: ['Precise money rules', 'JSONL/CSV batches', 'SQLite queries', 'Ledger checks'],
+    icon: '$',
   },
   {
-    title: '🤖 AI Tooling',
-    examples: ['Default-deny tools', 'Explicit allow policy', 'Core LLM package', 'Native tensor batching'],
-    icon: '🤖',
+    title: 'AI tooling',
+    examples: ['Explicit tool access', 'Default-deny policy', 'core-llm package', 'Native batching'],
+    icon: 'AI',
   },
   {
-    title: '🚀 Native Runtime',
-    examples: ['C lexer/compiler', 'Bytecode runtime', 'Standalone executable', 'Python fallback'],
-    icon: '🚀',
+    title: 'Runtime work',
+    examples: ['C lexer/compiler', 'bytecode runtime', 'standalone executable', 'Python fallback'],
+    icon: 'C',
   },
 ];
 
 const LATEST_VERSION = 'v2.9.2';
+const QUICK_STEPS = [
+  {
+    title: 'Install',
+    text: 'Install from a source checkout, then confirm the CLI is available.',
+    code: 'python -m pip install -e .[dev]',
+  },
+  {
+    title: 'Run a file',
+    text: 'Use mellow run to execute a .mellow file through the default runtime.',
+    code: 'mellow run examples/hello.mellow',
+  },
+  {
+    title: 'Check the project',
+    text: 'Use doctor, check, and release-gate before sharing a build.',
+    code: 'mellow doctor',
+  },
+];
 
 function Feature({ title, description, icon, color }: FeatureItem) {
   return (
@@ -109,7 +126,6 @@ function UseCase({ title, examples, icon }: UseCaseItem) {
 export default function Home(): React.JSX.Element {
   const { siteConfig } = useDocusaurusContext();
 
-  // ✅ สำคัญ: กัน logo หายบน Vercel/GitHub Pages/custom domain
   const logoSrc = useBaseUrl('/img/Logo.png');
 
   const DOC_WHAT_IS = '/docs/intro/what-is-mellow';
@@ -118,9 +134,9 @@ export default function Home(): React.JSX.Element {
   const DOC_CAN_DO = '/docs/intro/what-can-mellow-do';
 
   return (
-      <Layout
+    <Layout
       title={`${siteConfig.title} - Sandbox Scripting Language`}
-      description="MellowLang 2.9.2 คือ sandbox scripting language สำหรับ games, tools และ AI-era automation"
+      description="MellowLang 2.9.2 is a readable sandbox scripting language for tools, data, finance, games, and AI-era automation."
     >
       <header className={clsx('hero hero--dark', styles.heroBanner)}>
         <div className={styles.heroInner}>
@@ -134,18 +150,18 @@ export default function Home(): React.JSX.Element {
             </Heading>
 
             <p className={clsx('hero__subtitle', styles.heroSubtitle)}>
-              &quot;Small, deterministic, auditable scripting for tools, games, and AI-era workflows.&quot;
+              Readable sandbox scripting for tools, data, games, and AI-era automation.
             </p>
 
             <p className={styles.heroDescription}>
-              MellowLang 2.9.2 โฟกัส stable language core, native C runtime,
+              MellowLang 2.9.2 gives you a small stable language core,
               <br />
-              sandbox profiles และ release gates ที่ตรวจสอบได้
+              a native runtime, sandbox profiles, and release checks.
             </p>
 
             <div className={styles.heroButtons}>
               <Link className={clsx('button button--primary button--lg', styles.heroButton)} to={DOC_WHAT_IS}>
-                🚀 เริ่มต้นใช้งาน
+                Start here
               </Link>
 
               <Link className={clsx('button button--secondary button--lg', styles.heroButton)} to="/playground">
@@ -153,11 +169,11 @@ export default function Home(): React.JSX.Element {
               </Link>
 
               <Link className={clsx('button button--secondary button--lg', styles.heroButton)} to={DOC_SYNTAX}>
-                📖 Syntax
+                Syntax
               </Link>
 
               <Link className={clsx('button button--secondary button--lg', styles.heroButton)} to={DOC_CAN_DO}>
-                ✅ ทำอะไรได้บ้าง
+                Use cases
               </Link>
 
               <Link
@@ -166,7 +182,7 @@ export default function Home(): React.JSX.Element {
                 target="_blank"
                 rel="noreferrer"
               >
-                ⬇️ ดาวน์โหลด CLI
+                Download CLI
               </Link>
             </div>
           </div>
@@ -180,13 +196,38 @@ export default function Home(): React.JSX.Element {
       </header>
 
       <main>
+        <section className={styles.quickStart}>
+          <div className="container">
+            <div className={styles.quickIntro}>
+              <Heading as="h2" className={styles.sectionTitle}>
+                Understand Mellow in 3 steps
+              </Heading>
+              <p className={styles.sectionSubtitle}>
+                Start here if you are new. Then jump into the detailed docs when the shape makes sense.
+              </p>
+            </div>
+            <div className={styles.stepGrid}>
+              {QUICK_STEPS.map((step, idx) => (
+                <div className={styles.stepCard} key={step.title}>
+                  <span className={styles.stepNumber}>{idx + 1}</span>
+                  <h3>{step.title}</h3>
+                  <p>{step.text}</p>
+                  <code>{step.code}</code>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section className={styles.features}>
           <div className="container">
             <div className="text--center">
               <Heading as="h2" className={styles.sectionTitle}>
-                ✨ ทำไมต้อง Mellow?
+                Why use Mellow?
               </Heading>
-              <p className={styles.sectionSubtitle}>ออกแบบมาเพื่อ Game Developers และ AI Engineers โดยเฉพาะ</p>
+              <p className={styles.sectionSubtitle}>
+                It keeps scripts easy to read while giving you runtime controls that normal scripts often miss.
+              </p>
             </div>
             <div className="row">
               {FEATURE_LIST.map((props, idx) => (
@@ -201,15 +242,15 @@ export default function Home(): React.JSX.Element {
             <div className="row">
               <div className="col col--6">
                 <Heading as="h2" className={styles.sectionTitle}>
-                  💻 Syntax ง่าย เหมือน Python
+                  Short syntax you can follow
                 </Heading>
                 <p className={styles.sectionSubtitle}>
-                  stable core รองรับ let, def, if/while/for, range, list/map literals และ stdlib helpers
+                  These examples cover the common path: core syntax, money helpers, and bounded data batches.
                 </p>
 
                 <div className={styles.codeExamples}>
                   <div className={styles.codeExample}>
-                    <h4 style={{ color: '#fbbf24' }}>⚡ Stable Core</h4>
+                    <h4 style={{ color: '#fbbf24' }}>Core syntax</h4>
                     <pre>
                       <code>{`# comment
 let score = 0
@@ -225,7 +266,7 @@ print(score)`}</code>
                   </div>
 
                   <div className={styles.codeExample}>
-                    <h4 style={{ color: '#4ade80' }}>💰 Money-safe Rules</h4>
+                    <h4 style={{ color: '#4ade80' }}>Money-safe rules</h4>
                     <pre>
                       <code>{`let subtotal = money("0.10", "THB")
 let fee = money("0.20", "THB")
@@ -236,7 +277,7 @@ print(money_format(total))`}</code>
                   </div>
 
                   <div className={styles.codeExample}>
-                    <h4 style={{ color: '#f472b6' }}>📊 Bounded Data</h4>
+                    <h4 style={{ color: '#f472b6' }}>Batched data</h4>
                     <pre>
                       <code>{`let stream = data_open_jsonl("records.jsonl", 1000)
 let batch = data_next(stream)
@@ -251,19 +292,19 @@ while len(batch) > 0:
 
               <div className="col col--6">
                 <div className={styles.visionCard}>
-                  <h3>🎯 Stable Core in 2.9.2</h3>
-                  <p> MellowLang 2.9.2 treats the language core as the stable surface and keeps larger systems clearly marked as optional or experimental. </p>
+                  <h3>What matters in 2.9.2</h3>
+                  <p>Mellow separates stable runtime behavior from optional or experimental systems, so teams know what is ready to rely on.</p>
                   <ul className={styles.visionList}>
                     <li>
-                      ✅ Native C VM is the default for <code>mellow run</code>
+                      Native C VM is the default engine for <code>mellow run</code>
                     </li>
                     <li>
-                      ✅ Python fallback handles debugger, events, and record/replay gaps
+                      Python VM handles fallback for debugger, events, and record/replay
                     </li>
                     <li>
-                      ✅ <code>--sandbox=finance</code> and <code>--sandbox=data</code> tighten host access
+                      <code>--sandbox=finance</code> and <code>--sandbox=data</code> limit host access
                     </li>
-                    <li>✅ AI tools are default-deny unless explicitly allowed</li>
+                    <li>AI tools are denied by default unless explicitly allowed</li>
                   </ul>
                 </div>
 
@@ -310,9 +351,11 @@ mellow release-gate`}</code>
           <div className="container">
             <div className="text--center">
               <Heading as="h2" className={styles.sectionTitle}>
-                🚀 ใช้ Mellow สร้างอะไรได้บ้าง?
+                What can you build with Mellow?
               </Heading>
-              <p className={styles.sectionSubtitle}>จาก scripts ขนาดเล็ก ไปจนถึง data, finance และ AI tooling ที่ต้องตรวจสอบได้</p>
+              <p className={styles.sectionSubtitle}>
+                Think of Mellow as scripting for places where safety, repeatability, and reviewability matter.
+              </p>
             </div>
             <div className="row">
               {USE_CASE_LIST.map((props, idx) => (
@@ -325,20 +368,20 @@ mellow release-gate`}</code>
         <section className={clsx(styles.ctaSection, 'hero hero--primary')}>
           <div className="container text--center">
             <Heading as="h2" className={styles.ctaTitle}>
-              พร้อมเริ่มสร้างด้วย Mellow?
+              Ready to try Mellow?
             </Heading>
             <p className={styles.ctaDescription}>
-              เริ่มจาก docs หรือเข้า Playground แล้วลองรันตัวอย่างได้เลย
+              Start with installation or open the playground to scan the syntax quickly.
             </p>
             <div className={styles.ctaButtons}>
               <Link className={clsx('button button--secondary button--lg', styles.ctaButton)} to={DOC_INSTALL}>
-                📦 ติดตั้ง
+                Install
               </Link>
               <Link className={clsx('button button--outline button--lg', styles.ctaButton)} to="/playground">
                 🧪 Playground
               </Link>
               <Link className={clsx('button button--outline button--lg', styles.ctaButton)} to="/donate">
-                💖 สนับสนุน
+                Support
               </Link>
             </div>
           </div>

@@ -5,7 +5,7 @@ title: Syntax Guide
 
 # Syntax Guide
 
-Mellow มี syntax คล้าย Python
+Mellow uses indentation-based syntax that should feel familiar if you have used Python-style scripting.
 
 ```mellow
 let hp = 100
@@ -13,9 +13,7 @@ let hp = 100
 def add(a, b):
     return a + b
 
-print(add(2,3))
-
-# Control Flow
+print(add(2, 3))
 
 if hp < 10:
     print("low")
@@ -23,3 +21,6 @@ elif hp < 50:
     print("warning")
 else:
     print("ok")
+```
+
+Use this page as a quick scan. For the stable 2.9 language contract, see the Core Profile page.
