@@ -23,7 +23,7 @@ export default function Donate(): React.JSX.Element {
   const raised = Number(donation.raised || 0);
   const goal = Math.max(Number(donation.goal || 0), 1);
   const pct = Math.min(100, Math.max(0, Math.round((raised / goal) * 100)));
-  const cryptoWalletAddress = '';
+  const cryptoWalletAddress = '0xe505C178c891F91Ce94c8EDbA8a1611E32c8574c';
 
   return (
     <Layout title="Support" description="Support Mellow development">
@@ -104,16 +104,18 @@ export default function Donate(): React.JSX.Element {
             <button
               className={`${styles.btn} ${styles.btnSecondary}`}
               type="button"
-              disabled={!cryptoWalletAddress}
               onClick={() => {
-                if (!cryptoWalletAddress) return;
                 navigator.clipboard.writeText(cryptoWalletAddress);
-                alert('Wallet address copied.');
+                alert('Ethereum wallet address copied.');
               }}
             >
-              Crypto Wallet Coming Soon
+              Copy Ethereum Wallet
             </button>
           </div>
+
+          <p className={styles.walletAddress}>
+            Ethereum: <code>{cryptoWalletAddress}</code>
+          </p>
 
           <p className={styles.mutedNote}>
             Funding totals are currently updated manually from available support channels.
