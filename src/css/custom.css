@@ -33,21 +33,23 @@
 
 /* Buttons */
 .button--primary {
-  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%) !important;
-  border: none !important;
+  background: #e2e8f0 !important;
+  border: 1px solid #e2e8f0 !important;
   color: #0f172a !important;
-  font-weight: bold !important;
+  font-weight: 800 !important;
 }
 
 .button--secondary {
-  background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
-  border: 2px solid #38bdf8 !important;
-  color: #38bdf8 !important;
+  background: #162235 !important;
+  border: 1px solid rgba(125, 211, 252, 0.36) !important;
+  color: #d7e1ef !important;
+  font-weight: 800 !important;
 }
 
 html,
 body {
   background: #0b1220;
+  overflow-x: hidden;
 }
 
 /* Navbar */

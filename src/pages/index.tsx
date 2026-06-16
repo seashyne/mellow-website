@@ -10,8 +10,7 @@ import styles from './index.module.css';
 type FeatureItem = {
   title: string;
   description: string;
-  icon: string;
-  color: string;
+  label: string;
 };
 
 type UseCaseItem = {
@@ -33,34 +32,35 @@ type ReleaseItem = {
   text: string;
 };
 
+type ProofItem = {
+  value: string;
+  label: string;
+};
+
 const FEATURE_LIST: FeatureItem[] = [
   {
-    title: 'Stable core',
+    title: 'Small language core',
     description:
-      'Write scripts with familiar basics: let, def, if, while, for, range, lists, maps, and direct function calls.',
-    icon: '✓',
-    color: '#f472b6',
+      'Use familiar control flow, functions, lists, maps, and direct calls without turning scripts into a framework.',
+    label: 'Core',
   },
   {
-    title: 'Native by default',
+    title: 'Native runtime path',
     description:
-      'mellow run uses the native C VM first, with Python fallback for features that still need it.',
-    icon: '⚙',
-    color: '#4ade80',
+      'Run stable scripts on the C VM first, with Python fallback reserved for capabilities that still need it.',
+    label: 'Runtime',
   },
   {
-    title: 'Safer sandboxes',
+    title: 'Explicit host access',
     description:
-      'Use finance and data sandboxes to limit file access, database writes, network behavior, and risky host calls.',
-    icon: '□',
-    color: '#fbbf24',
+      'Apply finance and data sandbox profiles so file, data, network, and AI tool access can be reviewed.',
+    label: 'Policy',
   },
   {
-    title: 'Release checks',
+    title: 'Operational checks',
     description:
-      'Run bench, security audit, and release-gate checks before shipping a runtime or package change.',
-    icon: '→',
-    color: '#38bdf8',
+      'Use doctor, check, benchmark, security audit, and release-gate commands before publishing changes.',
+    label: 'Ship',
   },
 ];
 
@@ -68,27 +68,33 @@ const USE_CASE_LIST: UseCaseItem[] = [
   {
     title: 'Core scripts',
     examples: ['CLI tasks', 'Rule scripts', 'Build checks', 'Small automations'],
-    icon: '⌁',
+    icon: '01',
   },
   {
     title: 'Finance and data',
     examples: ['Precise money rules', 'JSONL/CSV batches', 'SQLite queries', 'Ledger checks'],
-    icon: '$',
+    icon: '02',
   },
   {
     title: 'AI tooling',
     examples: ['Explicit tool access', 'Default-deny policy', 'core-llm package', 'Native batching'],
-    icon: 'AI',
+    icon: '03',
   },
   {
     title: 'Runtime work',
     examples: ['C lexer/compiler', 'bytecode runtime', 'standalone executable', 'Python fallback'],
-    icon: 'C',
+    icon: '04',
   },
 ];
 
 const LATEST_VERSION = 'v2.9.2';
 const SOURCE_REPO = 'https://github.com/seashyne/mellow-programming-language';
+const PROOF_ITEMS: ProofItem[] = [
+  { value: 'C VM', label: 'Default engine' },
+  { value: '2.9.2', label: 'Current release' },
+  { value: 'deny', label: 'Default AI tool policy' },
+  { value: 'gated', label: 'Release workflow' },
+];
 const RELEASE_ITEMS: ReleaseItem[] = [
   {
     label: 'Security',
@@ -109,19 +115,19 @@ const RELEASE_ITEMS: ReleaseItem[] = [
 
 const QUICK_STEPS = [
   {
-    title: 'Install',
-    text: 'Install from a source checkout, then confirm the CLI is available.',
+    title: 'Clone the source',
+    text: 'Use the language repository as the source of truth for releases and examples.',
+    code: 'git clone https://github.com/seashyne/mellow-programming-language.git',
+  },
+  {
+    title: 'Install locally',
+    text: 'Install the CLI from the checkout, then confirm the current version.',
     code: 'python -m pip install -e .[dev]',
   },
   {
-    title: 'Run a file',
-    text: 'Use mellow run to execute a .mellow file through the default runtime.',
+    title: 'Run and check',
+    text: 'Execute scripts and use project checks before relying on a local build.',
     code: 'mellow run examples/hello.mellow',
-  },
-  {
-    title: 'Check the project',
-    text: 'Use doctor, check, and release-gate before sharing a build.',
-    code: 'mellow doctor',
   },
 ];
 
@@ -146,15 +152,11 @@ const PATH_ITEMS: PathItem[] = [
   },
 ];
 
-function Feature({ title, description, icon, color }: FeatureItem) {
+function Feature({ title, description, label }: FeatureItem) {
   return (
     <div className={clsx('col col--3', styles.featureCard)}>
-      <div className={styles.featureIcon} style={{ backgroundColor: `${color}20`, color }}>
-        <span style={{ fontSize: '2.5rem' }}>{icon}</span>
-      </div>
-      <h3 className={styles.featureTitle} style={{ color }}>
-        {title}
-      </h3>
+      <div className={styles.featureLabel}>{label}</div>
+      <h3 className={styles.featureTitle}>{title}</h3>
       <p className={styles.featureDescription}>{description}</p>
     </div>
   );
@@ -204,7 +206,6 @@ export default function Home(): React.JSX.Element {
   const DOC_WHAT_IS = '/docs/intro/what-is-mellow';
   const DOC_INSTALL = '/docs/intro/installation';
   const DOC_SYNTAX = '/docs/language/syntax';
-  const DOC_CAN_DO = '/docs/intro/what-can-mellow-do';
 
   return (
     <Layout
@@ -219,33 +220,25 @@ export default function Home(): React.JSX.Element {
             </div>
 
             <Heading as="h1" className={clsx('hero__title', styles.heroTitle)}>
-              Scripting with guardrails.
+              Controlled scripting for real automation.
             </Heading>
 
             <p className={clsx('hero__subtitle', styles.heroSubtitle)}>
-              MellowLang is a small, readable scripting language for tools, data, games, and AI-era automation.
+              MellowLang is built for scripts that need readable code, predictable runtime behavior, and reviewable access to the host system.
             </p>
 
             <p className={styles.heroDescription}>
-              It combines a stable Python-like core, native execution, sandbox profiles,
-              and release checks so scripts stay understandable and safer to ship.
+              Version 2.9.2 focuses the public surface around the native C VM, sandbox profiles,
+              release gates, and explicit AI tool policy.
             </p>
 
             <div className={styles.heroButtons}>
               <Link className={clsx('button button--primary button--lg', styles.heroButton)} to={DOC_WHAT_IS}>
-                Start here
-              </Link>
-
-              <Link className={clsx('button button--secondary button--lg', styles.heroButton)} to="/playground">
-                🧪 Playground
+                Read the docs
               </Link>
 
               <Link className={clsx('button button--secondary button--lg', styles.heroButton)} to={DOC_SYNTAX}>
-                Syntax
-              </Link>
-
-              <Link className={clsx('button button--secondary button--lg', styles.heroButton)} to={DOC_CAN_DO}>
-                Use cases
+                View syntax
               </Link>
 
               <Link
@@ -257,6 +250,15 @@ export default function Home(): React.JSX.Element {
                 Source repo
               </Link>
             </div>
+
+            <div className={styles.proofGrid}>
+              {PROOF_ITEMS.map((item) => (
+                <div key={item.label}>
+                  <strong>{item.value}</strong>
+                  <span>{item.label}</span>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className={styles.heroRight}>
@@ -265,13 +267,14 @@ export default function Home(): React.JSX.Element {
                 <img src={logoSrc} alt="Mellow Logo" />
                 <div>
                   <strong>MellowLang</strong>
-                  <span>Stable core + native runtime</span>
+                  <span>Language source checkout</span>
                 </div>
               </div>
               <pre className={styles.heroTerminal}>
-                <code>{`mellow run rules.mellow --sandbox=finance
-mellow security audit
-mellow release-gate`}</code>
+                <code>{`git clone <language-source>
+cd mellow-programming-language
+python -m pip install -e .[dev]
+mellow run examples/hello.mellow`}</code>
               </pre>
               <div className={styles.panelGrid}>
                 <div>
@@ -301,10 +304,10 @@ mellow release-gate`}</code>
           <div className="container">
             <div className={styles.quickIntro}>
               <Heading as="h2" className={styles.sectionTitle}>
-                Understand Mellow in 3 steps
+                Start from the real repository
               </Heading>
               <p className={styles.sectionSubtitle}>
-                Start here if you are new. Then jump into the detailed docs when the shape makes sense.
+                The website points to the language source directly, so installation, examples, and release notes stay tied to the project that ships the CLI.
               </p>
             </div>
             <div className={styles.stepGrid}>
@@ -326,8 +329,8 @@ mellow release-gate`}</code>
               <span>{LATEST_VERSION}</span>
               <Heading as="h2">Built for scripts people need to trust</Heading>
               <p>
-                The latest release focuses on safety policy, native runtime behavior,
-                and checks that make language changes easier to review.
+                The latest release puts emphasis on runtime behavior, safety policy,
+                and checks that make language changes easier to inspect.
               </p>
             </div>
             <div className={styles.releaseGrid}>
@@ -342,10 +345,10 @@ mellow release-gate`}</code>
           <div className="container">
             <div className="text--center">
               <Heading as="h2" className={styles.sectionTitle}>
-                Why use Mellow?
+                What Mellow is for
               </Heading>
               <p className={styles.sectionSubtitle}>
-                It keeps scripts easy to read while giving you runtime controls that normal scripts often miss.
+                A compact scripting layer for automation that should be easy to audit before it runs.
               </p>
             </div>
             <div className="row">
@@ -361,10 +364,10 @@ mellow release-gate`}</code>
             <div className="row">
               <div className="col col--6">
                 <Heading as="h2" className={styles.sectionTitle}>
-                  Short syntax you can follow
+                  Syntax kept close to the task
                 </Heading>
                 <p className={styles.sectionSubtitle}>
-                  These examples cover the common path: core syntax, money helpers, and bounded data batches.
+                  Mellow code is intentionally direct: declarations, functions, loops, records, and controlled helpers.
                 </p>
 
                 <div className={styles.codeExamples}>
@@ -428,7 +431,7 @@ while len(batch) > 0:
                 </div>
 
                 <div className={styles.cliCard}>
-                  <h3>🖥️ CLI Usage</h3>
+                  <h3>CLI usage</h3>
                   <pre>
                     <code>{`mellow --version
 mellow run examples/hello.mellow
@@ -470,7 +473,7 @@ mellow release-gate`}</code>
           <div className="container">
             <div className="text--center">
               <Heading as="h2" className={styles.sectionTitle}>
-                What can you build with Mellow?
+                Use cases
               </Heading>
               <p className={styles.sectionSubtitle}>
                 Think of Mellow as scripting for places where safety, repeatability, and reviewability matter.
@@ -515,7 +518,7 @@ mellow release-gate`}</code>
                 Install
               </Link>
               <Link className={clsx('button button--outline button--lg', styles.ctaButton)} to="/playground">
-                🧪 Playground
+                Playground
               </Link>
               <Link
                 className={clsx('button button--outline button--lg', styles.ctaButton)}

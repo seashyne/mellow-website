@@ -76,7 +76,7 @@ const config: Config = {
           items: [{ label: 'Language source', href: 'https://github.com/seashyne/mellow-programming-language' }],
         },
       ],
-      copyright: `© ${new Date().getFullYear()} Mellow Language Project. Built with ❤️ by Seashyne.`,
+      copyright: `© ${new Date().getFullYear()} Mellow Language Project. Built by Seashyne.`,
     },
     prism: {
       theme: prismThemes.github,
