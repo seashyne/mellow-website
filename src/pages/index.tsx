@@ -20,6 +20,19 @@ type UseCaseItem = {
   icon: string;
 };
 
+type PathItem = {
+  title: string;
+  description: string;
+  to: string;
+  action: string;
+};
+
+type ReleaseItem = {
+  label: string;
+  title: string;
+  text: string;
+};
+
 const FEATURE_LIST: FeatureItem[] = [
   {
     title: 'Stable core',
@@ -75,6 +88,24 @@ const USE_CASE_LIST: UseCaseItem[] = [
 ];
 
 const LATEST_VERSION = 'v2.9.2';
+const RELEASE_ITEMS: ReleaseItem[] = [
+  {
+    label: 'Security',
+    title: 'Default-deny AI tools',
+    text: 'Agent tools must be explicitly allowed, which makes automation safer to review.',
+  },
+  {
+    label: 'Runtime',
+    title: 'Native execution first',
+    text: 'The C VM is the default engine for stable scripts, with Python fallback where needed.',
+  },
+  {
+    label: 'Quality',
+    title: 'Release gates',
+    text: 'Benchmarks, sandbox checks, and package integrity checks are part of the release flow.',
+  },
+];
+
 const QUICK_STEPS = [
   {
     title: 'Install',
@@ -90,6 +121,27 @@ const QUICK_STEPS = [
     title: 'Check the project',
     text: 'Use doctor, check, and release-gate before sharing a build.',
     code: 'mellow doctor',
+  },
+];
+
+const PATH_ITEMS: PathItem[] = [
+  {
+    title: 'I am new to Mellow',
+    description: 'Get the language shape, the stable core, and the mental model in a few minutes.',
+    to: '/docs/intro/what-is-mellow',
+    action: 'Read the overview',
+  },
+  {
+    title: 'I want to run code',
+    description: 'Install the CLI, run a .mellow file, and check your local environment.',
+    to: '/docs/intro/installation',
+    action: 'Install the CLI',
+  },
+  {
+    title: 'I need the syntax',
+    description: 'Scan variables, functions, loops, maps, lists, and the 2.9 Core Profile.',
+    to: '/docs/language/syntax',
+    action: 'Open syntax docs',
   },
 ];
 
@@ -123,6 +175,26 @@ function UseCase({ title, examples, icon }: UseCaseItem) {
   );
 }
 
+function PathCard({ title, description, to, action }: PathItem) {
+  return (
+    <Link className={styles.pathCard} to={to}>
+      <h3>{title}</h3>
+      <p>{description}</p>
+      <span>{action}</span>
+    </Link>
+  );
+}
+
+function ReleaseItem({ label, title, text }: ReleaseItem) {
+  return (
+    <div className={styles.releaseItem}>
+      <span>{label}</span>
+      <h3>{title}</h3>
+      <p>{text}</p>
+    </div>
+  );
+}
+
 export default function Home(): React.JSX.Element {
   const { siteConfig } = useDocusaurusContext();
 
@@ -142,21 +214,20 @@ export default function Home(): React.JSX.Element {
         <div className={styles.heroInner}>
           <div className={styles.heroLeft}>
             <div className={styles.heroBadge}>
-              <span className={styles.badgePulse}>✨</span> {LATEST_VERSION}
+              <span className={styles.badgePulse}>●</span> Current release {LATEST_VERSION}
             </div>
 
             <Heading as="h1" className={clsx('hero__title', styles.heroTitle)}>
-              Mellow
+              Scripting with guardrails.
             </Heading>
 
             <p className={clsx('hero__subtitle', styles.heroSubtitle)}>
-              Readable sandbox scripting for tools, data, games, and AI-era automation.
+              MellowLang is a small, readable scripting language for tools, data, games, and AI-era automation.
             </p>
 
             <p className={styles.heroDescription}>
-              MellowLang 2.9.2 gives you a small stable language core,
-              <br />
-              a native runtime, sandbox profiles, and release checks.
+              It combines a stable Python-like core, native execution, sandbox profiles,
+              and release checks so scripts stay understandable and safer to ship.
             </p>
 
             <div className={styles.heroButtons}>
@@ -188,8 +259,37 @@ export default function Home(): React.JSX.Element {
           </div>
 
           <div className={styles.heroRight}>
-            <div className={styles.heroLogoWrap}>
-              <img src={logoSrc} alt="Mellow Logo" className={styles.heroLogo} />
+            <div className={styles.productPanel}>
+              <div className={styles.panelHeader}>
+                <img src={logoSrc} alt="Mellow Logo" />
+                <div>
+                  <strong>MellowLang</strong>
+                  <span>Stable core + native runtime</span>
+                </div>
+              </div>
+              <pre className={styles.heroTerminal}>
+                <code>{`mellow run rules.mellow --sandbox=finance
+mellow security audit
+mellow release-gate`}</code>
+              </pre>
+              <div className={styles.panelGrid}>
+                <div>
+                  <span>Default engine</span>
+                  <strong>C VM</strong>
+                </div>
+                <div>
+                  <span>Current</span>
+                  <strong>{LATEST_VERSION}</strong>
+                </div>
+                <div>
+                  <span>Safety mode</span>
+                  <strong>Sandboxed</strong>
+                </div>
+                <div>
+                  <span>Release flow</span>
+                  <strong>Gated</strong>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -214,6 +314,24 @@ export default function Home(): React.JSX.Element {
                   <p>{step.text}</p>
                   <code>{step.code}</code>
                 </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.releaseBand}>
+          <div className="container">
+            <div className={styles.releaseHeader}>
+              <span>{LATEST_VERSION}</span>
+              <Heading as="h2">Built for scripts people need to trust</Heading>
+              <p>
+                The latest release focuses on safety policy, native runtime behavior,
+                and checks that make language changes easier to review.
+              </p>
+            </div>
+            <div className={styles.releaseGrid}>
+              {RELEASE_ITEMS.map((item) => (
+                <ReleaseItem key={item.title} {...item} />
               ))}
             </div>
           </div>
@@ -360,6 +478,24 @@ mellow release-gate`}</code>
             <div className="row">
               {USE_CASE_LIST.map((props, idx) => (
                 <UseCase key={idx} {...props} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.pathSection}>
+          <div className="container">
+            <div className="text--center">
+              <Heading as="h2" className={styles.sectionTitle}>
+                Choose your path
+              </Heading>
+              <p className={styles.sectionSubtitle}>
+                The site is organized around what you are trying to do next.
+              </p>
+            </div>
+            <div className={styles.pathGrid}>
+              {PATH_ITEMS.map((item) => (
+                <PathCard key={item.title} {...item} />
               ))}
             </div>
           </div>
