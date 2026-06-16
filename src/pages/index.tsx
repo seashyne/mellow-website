@@ -89,11 +89,12 @@ const USE_CASE_LIST: UseCaseItem[] = [
 
 const LATEST_VERSION = 'v2.9.2';
 const SOURCE_REPO = 'https://github.com/seashyne/mellow-programming-language';
+const PACKAGE_REGISTRY = 'https://mellow-public-registry.jirayut-wh.workers.dev/packages';
 const PROOF_ITEMS: ProofItem[] = [
   { value: 'C VM', label: 'Default engine' },
   { value: '2.9.2', label: 'Current release' },
   { value: 'deny', label: 'Default AI tool policy' },
-  { value: 'gated', label: 'Release workflow' },
+  { value: 'registry', label: 'Public packages' },
 ];
 const RELEASE_ITEMS: ReleaseItem[] = [
   {
@@ -110,6 +111,11 @@ const RELEASE_ITEMS: ReleaseItem[] = [
     label: 'Quality',
     title: 'Release gates',
     text: 'Benchmarks, sandbox checks, and package integrity checks are part of the release flow.',
+  },
+  {
+    label: 'Packages',
+    title: 'Public registry',
+    text: 'Browse shared packages through the public Mellow registry when you need reusable building blocks.',
   },
 ];
 
@@ -248,6 +254,15 @@ export default function Home(): React.JSX.Element {
                 rel="noreferrer"
               >
                 Source repo
+              </Link>
+
+              <Link
+                className={clsx('button button--outline button--lg', styles.heroButton)}
+                to={PACKAGE_REGISTRY}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Registry
               </Link>
             </div>
 
@@ -527,6 +542,14 @@ mellow release-gate`}</code>
                 rel="noreferrer"
               >
                 Source repo
+              </Link>
+              <Link
+                className={clsx('button button--outline button--lg', styles.ctaButton)}
+                to={PACKAGE_REGISTRY}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Registry
               </Link>
               <Link className={clsx('button button--outline button--lg', styles.ctaButton)} to="/donate">
                 Support

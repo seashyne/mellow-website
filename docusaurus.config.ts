@@ -55,6 +55,7 @@ const config: Config = {
         { type: 'docSidebar', sidebarId: 'tutorialSidebar', position: 'left', label: 'Docs' },
         { to: '/playground', label: 'Playground', position: 'left' },
         { to: '/roadmap', label: 'Roadmap', position: 'left' },
+        { href: 'https://mellow-public-registry.jirayut-wh.workers.dev/packages', label: 'Registry', position: 'left' },
         { to: '/donate', label: 'Support', position: 'left' },
         { type: 'localeDropdown', position: 'right' },
         { href: 'https://github.com/seashyne/mellow-programming-language', label: 'GitHub', position: 'right' },
@@ -73,7 +74,10 @@ const config: Config = {
         },
         {
           title: 'Community',
-          items: [{ label: 'Language source', href: 'https://github.com/seashyne/mellow-programming-language' }],
+          items: [
+            { label: 'Language source', href: 'https://github.com/seashyne/mellow-programming-language' },
+            { label: 'Package registry', href: 'https://mellow-public-registry.jirayut-wh.workers.dev/packages' },
+          ],
         },
       ],
       copyright: `© ${new Date().getFullYear()} Mellow Language Project. Built by Seashyne.`,
