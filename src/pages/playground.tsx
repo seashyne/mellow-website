@@ -1,15 +1,9 @@
 import React, { useState } from "react";
 import Layout from "@theme/Layout";
 import Heading from "@theme/Heading";
+import { runMellowCode, type RuntimeLine } from "../lib/mellowBrowserRuntime";
 import styles from "./playground.module.css";
 
-// --- Types ---
-type OutputType = {
-  type: "success" | "error" | "info";
-  message: string;
-};
-
-// --- Sample Code Templates ---
 const SAMPLE_CODES = {
   hello: `# Hello Mellow
 print("Hello, Mellow World!")`,
@@ -25,21 +19,20 @@ for i in range(0, 6):
 
 print(score)`,
 
+  condition: `# Conditions and maps
+let player = {"name": "Mira", "score": 12}
+
+if player["score"] >= 10:
+    print(player["name"] + " wins")
+else:
+    print(player["name"] + " keeps going")`,
+
   money: `# Money-safe rules
 let subtotal = money("0.10", "THB")
 let fee = money("0.20", "THB")
 let total = money_add(subtotal, fee)
 
 print(money_format(total))`,
-
-  data: `# Bounded data processing
-let stream = data_open_jsonl("records.jsonl", 1000)
-let batch = data_next(stream)
-
-while len(batch) > 0:
-    let sales = data_where(batch, "kind", "==", "sale")
-    print(data_sum(sales, "amount"))
-    batch = data_next(stream)`,
 
   ledger: `# Immutable ledger
 let book = ledger_create("THB")
@@ -57,89 +50,24 @@ print(money_format(ledger_balance(book, "cash")))
 print(ledger_verify(book)["ok"])`,
 };
 
-// --- Main Component ---
 export default function Playground(): React.JSX.Element {
   const [code, setCode] = useState<string>(SAMPLE_CODES.hello);
-  const [output, setOutput] = useState<OutputType[]>([]);
+  const [output, setOutput] = useState<RuntimeLine[]>([]);
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [selectedSample, setSelectedSample] = useState<string>("hello");
 
-  // Run code simulation
-  const runCode = async () => {
+  const runCode = () => {
     setIsRunning(true);
-    setOutput([]);
-
-    // Simulate processing delay
-    await new Promise((resolve) => setTimeout(resolve, 800));
-
-    try {
-      const lines = code.split("\n");
-      const results: OutputType[] = [];
-
-      // Check for basic syntax
-      let hasError = false;
-      for (let i = 0; i < lines.length; i++) {
-        const line = lines[i].trim();
-        
-        // Skip empty lines and comments
-        if (!line || line.startsWith("#")) continue;
-
-        // Check for common syntax issues
-        if (line.includes("func ") && !line.includes("def ")) {
-          results.push({
-            type: "error",
-            message: `Line ${i + 1}: Use 'def' instead of 'func' for functions`,
-          });
-          hasError = true;
-        }
-
-        if (line.includes("//")) {
-          results.push({
-            type: "info",
-            message: `Line ${i + 1}: Use '#' for comments, not '//'`,
-          });
-        }
-
-        // Check for print statements
-        if (line.startsWith("print(")) {
-          const match = line.match(/print\("(.+)"\)/);
-          if (match) {
-            results.push({
-              type: "success",
-              message: `Output: ${match[1]}`,
-            });
-          }
-        }
-      }
-
-      if (!hasError && results.length === 0) {
-        results.push({
-          type: "success",
-          message: "✓ Code executed successfully!",
-        });
-      }
-
-      setOutput(results);
-    } catch (error: any) {
-      setOutput([
-        {
-          type: "error",
-          message: `Error: ${error.message}`,
-        },
-      ]);
-    }
-
+    setOutput(runMellowCode(code));
     setIsRunning(false);
   };
 
-  // Reset to sample code
   const loadSample = (sampleKey: keyof typeof SAMPLE_CODES) => {
     setCode(SAMPLE_CODES[sampleKey]);
     setSelectedSample(sampleKey);
     setOutput([]);
   };
 
-  // Clear everything
   const clearAll = () => {
     setCode("");
     setOutput([]);
@@ -149,7 +77,7 @@ export default function Playground(): React.JSX.Element {
   return (
     <Layout
       title="Playground"
-      description="Try Mellow syntax in the browser"
+      description="Run Frozen Mellow 2.9 Core Profile programs in your browser"
     >
       <main className={styles.playgroundContainer}>
         <div className={styles.header}>
@@ -157,8 +85,13 @@ export default function Playground(): React.JSX.Element {
             Mellow Playground
           </Heading>
           <p className={styles.subtitle}>
-            Explore the shape of Mellow code before installing the CLI.
+            Run Frozen Mellow 2.9 Core Profile programs locally in your browser.
           </p>
+          <div className={styles.runtimeStatus}>
+            <span className={styles.runtimeDot} />
+            Browser Core Runtime
+            <span>Frozen 2.9</span>
+          </div>
         </div>
 
         <div className={styles.toolbar}>
@@ -172,8 +105,8 @@ export default function Playground(): React.JSX.Element {
             >
               <option value="hello">Hello World</option>
               <option value="core">Stable Core</option>
+              <option value="condition">Conditions</option>
               <option value="money">Money</option>
-              <option value="data">Data</option>
               <option value="ledger">Ledger</option>
             </select>
           </div>
@@ -197,10 +130,9 @@ export default function Playground(): React.JSX.Element {
         </div>
 
         <div className={styles.editorGrid}>
-          {/* Code Editor */}
           <div className={styles.editorSection}>
             <div className={styles.sectionHeader}>
-              <span className={styles.sectionTitle}>💻 Code Editor</span>
+              <span className={styles.sectionTitle}>Editor</span>
               <span className={styles.sectionBadge}>.mellow</span>
             </div>
             <textarea
@@ -212,10 +144,9 @@ export default function Playground(): React.JSX.Element {
             />
           </div>
 
-          {/* Output */}
           <div className={styles.outputSection}>
             <div className={styles.sectionHeader}>
-              <span className={styles.sectionTitle}>📤 Output</span>
+              <span className={styles.sectionTitle}>Output</span>
               {output.length > 0 && (
                 <span className={styles.outputCount}>{output.length} results</span>
               )}
@@ -232,9 +163,10 @@ export default function Playground(): React.JSX.Element {
                     className={`${styles.outputLine} ${styles[item.type]}`}
                   >
                     <span className={styles.outputIcon}>
-                      {item.type === "success" && "✓"}
-                      {item.type === "error" && "✗"}
-                      {item.type === "info" && "ℹ"}
+                      {item.type === "stdout" && ">"}
+                      {item.type === "success" && "OK"}
+                      {item.type === "error" && "ERR"}
+                      {item.type === "info" && "i"}
                     </span>
                     <span>{item.message}</span>
                   </div>
@@ -244,10 +176,9 @@ export default function Playground(): React.JSX.Element {
           </div>
         </div>
 
-        {/* Quick Reference */}
         <div className={styles.reference}>
           <Heading as="h3" className={styles.referenceTitle}>
-            📖 Quick Reference
+            Frozen 2.9 quick reference
           </Heading>
           <div className={styles.referenceGrid}>
             <div className={styles.referenceCard}>
@@ -289,17 +220,17 @@ export default function Playground(): React.JSX.Element {
           </div>
         </div>
 
-        {/* Info Banner */}
         <div className={styles.infoBanner}>
-          <span className={styles.infoIcon}>ℹ️</span>
           <div className={styles.infoContent}>
-            <strong>Note:</strong> This playground is a lightweight demo. Install the Mellow CLI to run real scripts locally.
+            <strong>Runs locally:</strong> Code is executed by the Browser Core Runtime and is not uploaded.
+            The browser runtime covers the Frozen Mellow 2.9 Core Profile and selected in-memory helpers.
+            Install MellowLang 2.9.5 for the native C VM, filesystem, network, sandbox profiles, and full host integrations.
           </div>
           <a
             href="/docs/intro/installation"
             className={styles.infoLink}
           >
-            Install CLI →
+            Install CLI
           </a>
         </div>
       </main>

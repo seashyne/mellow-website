@@ -12,16 +12,37 @@
 
 .title {
   font-size: 2.5rem;
-  background: linear-gradient(135deg, #fbbf24 0%, #38bdf8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #f8fafc;
   margin-bottom: 0.5rem;
 }
 
 .subtitle {
-  color: #64748b;
+  color: #aebbd0;
   font-size: 1.1rem;
+}
+
+.runtimeStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid rgba(125, 211, 252, 0.25);
+  border-radius: 999px;
+  color: #d7e1ef;
+  background: rgba(56, 189, 248, 0.08);
+  font-size: 0.84rem;
+  font-weight: 750;
+}
+
+.runtimeStatus > span:last-child {
+  color: #7dd3fc;
+}
+
+.runtimeDot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: #22c55e;
 }
 
 /* Toolbar */
@@ -30,8 +51,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1.5rem;
-  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-  border-radius: 12px;
+  background: #111b2c;
+  border-radius: 8px;
   border: 1px solid #334155;
   margin-bottom: 1.5rem;
   flex-wrap: wrap;
@@ -87,13 +108,12 @@
 }
 
 .buttonPrimary {
-  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  background: #e2e8f0;
   color: #0f172a;
 }
 
 .buttonPrimary:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(251, 191, 36, 0.3);
+  background: #ffffff;
 }
 
 .buttonPrimary:disabled {
@@ -127,8 +147,8 @@
 
 .editorSection,
 .outputSection {
-  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-  border-radius: 12px;
+  background: #0f172a;
+  border-radius: 8px;
   border: 1px solid #334155;
   overflow: hidden;
 }
@@ -237,6 +257,13 @@
   color: #4ade80;
 }
 
+.outputLine.stdout {
+  padding: 0.35rem 0;
+  margin-bottom: 0.25rem;
+  color: #e2e8f0;
+  background: transparent;
+}
+
 .outputLine.error {
   background: rgba(248, 113, 113, 0.1);
   border-left: 3px solid #f87171;
@@ -250,21 +277,23 @@
 }
 
 .outputIcon {
-  font-weight: bold;
-  font-size: 1.1rem;
+  min-width: 2.2rem;
+  color: #64748b;
+  font-weight: 800;
+  font-size: 0.75rem;
 }
 
 /* Quick Reference */
 .reference {
-  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-  border-radius: 12px;
+  background: #111b2c;
+  border-radius: 8px;
   padding: 2rem;
   border: 1px solid #334155;
   margin-bottom: 2rem;
 }
 
 .referenceTitle {
-  color: #fbbf24;
+  color: #f8fafc;
   margin-bottom: 1.5rem;
   font-size: 1.3rem;
 }
@@ -286,7 +315,6 @@
 
 .referenceCard:hover {
   border-color: #38bdf8;
-  transform: translateY(-3px);
 }
 
 .referenceCard code {
@@ -310,12 +338,8 @@
   padding: 1.5rem;
   background: rgba(56, 189, 248, 0.1);
   border: 1px solid rgba(56, 189, 248, 0.3);
-  border-radius: 12px;
+  border-radius: 8px;
   border-left: 4px solid #38bdf8;
-}
-
-.infoIcon {
-  font-size: 2rem;
 }
 
 .infoContent {
