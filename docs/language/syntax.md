@@ -5,7 +5,7 @@ title: Syntax
 
 # Syntax
 
-Mellow 2.9 uses indentation-based blocks and a compact stable core.
+The Frozen Mellow 2.9 Core Profile uses indentation-based blocks and a compact stable core.
 
 ```mellow
 let score = 0
@@ -46,7 +46,7 @@ Legacy `end` and `do ... end` forms may still be accepted for compatibility, but
 
 ## Values
 
-The 2.9 Core Profile includes:
+The Frozen Mellow 2.9 Core Profile includes:
 
 - `none`
 - booleans: `true`, `false`

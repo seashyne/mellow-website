@@ -1,11 +1,13 @@
 ---
 sidebar_position: 2
-title: Core Profile 2.9
+title: Frozen Mellow 2.9 Core Profile
 ---
 
-# Core Profile 2.9
+# Frozen Mellow 2.9 Core Profile
 
-Mellow 2.9 Core Profile is the frozen portable language surface for the 2.9 release line.
+The Frozen Mellow 2.9 Core Profile is the current portable language contract for Mellow.
+
+**Status: Frozen and current.** MellowLang 2.9.5 is the current implementation release of this profile.
 
 Patch releases in the 2.9 line may fix bugs, but they must not change the meaning of valid programs. New syntax belongs in Mellow 2.10 or later.
 

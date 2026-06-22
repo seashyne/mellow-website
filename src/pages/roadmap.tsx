@@ -12,7 +12,7 @@ export default function Roadmap(): React.JSX.Element {
             🗺️ Roadmap
           </Heading>
           <p className={styles.pageLead}>
-            A short, readable view of the current release, previous milestone, and next stability track.
+            The Frozen Mellow 2.9 Core Profile is the current language contract. Runtime patch releases implement that frozen surface.
           </p>
         </div>
 
@@ -25,10 +25,10 @@ export default function Roadmap(): React.JSX.Element {
                 border: '1px solid rgba(74,222,128,0.35)',
                 background: 'rgba(74,222,128,0.14)', color: '#86efac', fontWeight: 800
               }}>✅ Current</span>
-              <h3 style={{ margin: 0, fontWeight: 900 }}>v2.9.2</h3>
+              <h3 style={{ margin: 0, fontWeight: 900 }}>Frozen Mellow 2.9 Core Profile</h3>
             </div>
             <p style={{ marginTop: '0.75rem', color: '#94a3b8', lineHeight: 1.7 }}>
-              Adds <code>mellow bench</code>, <code>mellow security audit</code>, and <code>mellow release-gate</code>, plus default-deny AI tool policy, sandbox checks, and package integrity gates.
+              Current frozen language contract. MellowLang <code>v2.9.5</code> is the current implementation release, with benchmark, security audit, release-gate, sandbox, and package integrity tooling.
             </p>
           </div>
 

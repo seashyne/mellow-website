@@ -87,12 +87,13 @@ const USE_CASE_LIST: UseCaseItem[] = [
   },
 ];
 
-const LATEST_VERSION = 'v2.9.2';
+const LATEST_VERSION = 'v2.9.5';
+const CURRENT_PROFILE = 'Frozen Mellow 2.9 Core Profile';
 const SOURCE_REPO = 'https://github.com/seashyne/mellow-programming-language';
 const PACKAGE_REGISTRY = 'https://mellow-public-registry.jirayut-wh.workers.dev/packages';
 const PROOF_ITEMS: ProofItem[] = [
   { value: 'C VM', label: 'Default engine' },
-  { value: '2.9.2', label: 'Current release' },
+  { value: 'Frozen 2.9', label: 'Current language profile' },
   { value: 'deny', label: 'Default AI tool policy' },
   { value: 'registry', label: 'Public packages' },
 ];
@@ -152,7 +153,7 @@ const PATH_ITEMS: PathItem[] = [
   },
   {
     title: 'I need the syntax',
-    description: 'Scan variables, functions, loops, maps, lists, and the 2.9 Core Profile.',
+    description: 'Scan variables, functions, loops, maps, lists, and the Frozen Mellow 2.9 Core Profile.',
     to: '/docs/language/syntax',
     action: 'Open syntax docs',
   },
@@ -216,13 +217,13 @@ export default function Home(): React.JSX.Element {
   return (
     <Layout
       title={`${siteConfig.title} - Sandbox Scripting Language`}
-      description="MellowLang 2.9.2 is a readable sandbox scripting language for tools, data, finance, games, and AI-era automation."
+      description="The Frozen Mellow 2.9 Core Profile is the current stable language contract, implemented by MellowLang 2.9.5."
     >
       <header className={clsx('hero hero--dark', styles.heroBanner)}>
         <div className={styles.heroInner}>
           <div className={styles.heroLeft}>
             <div className={styles.heroBadge}>
-              <span className={styles.badgePulse}>●</span> Current release {LATEST_VERSION}
+              <span className={styles.badgePulse}>●</span> Current standard: {CURRENT_PROFILE}
             </div>
 
             <Heading as="h1" className={clsx('hero__title', styles.heroTitle)}>
@@ -234,8 +235,8 @@ export default function Home(): React.JSX.Element {
             </p>
 
             <p className={styles.heroDescription}>
-              Version 2.9.2 focuses the public surface around the native C VM, sandbox profiles,
-              release gates, and explicit AI tool policy.
+              The Frozen 2.9 Core Profile defines the portable language contract. MellowLang 2.9.5
+              provides the current runtime, sandbox profiles, release gates, and explicit AI tool policy.
             </p>
 
             <div className={styles.heroButtons}>
@@ -341,11 +342,11 @@ mellow run examples/hello.mellow`}</code>
         <section className={styles.releaseBand}>
           <div className="container">
             <div className={styles.releaseHeader}>
-              <span>{LATEST_VERSION}</span>
-              <Heading as="h2">Built for scripts people need to trust</Heading>
+              <span>Frozen 2.9</span>
+              <Heading as="h2">A frozen language contract teams can depend on</Heading>
               <p>
-                The latest release puts emphasis on runtime behavior, safety policy,
-                and checks that make language changes easier to inspect.
+                Patch releases may fix bugs, but valid Frozen 2.9 programs keep the same meaning.
+                New syntax belongs in a later language profile.
               </p>
             </div>
             <div className={styles.releaseGrid}>
@@ -429,8 +430,8 @@ while len(batch) > 0:
 
               <div className="col col--6">
                 <div className={styles.visionCard}>
-                  <h3>What matters in 2.9.2</h3>
-                  <p>Mellow separates stable runtime behavior from optional or experimental systems, so teams know what is ready to rely on.</p>
+                  <h3>Frozen Mellow 2.9 Core Profile</h3>
+                  <p>The frozen profile separates the portable language contract from optional or experimental systems.</p>
                   <ul className={styles.visionList}>
                     <li>
                       Native C VM is the default engine for <code>mellow run</code>
@@ -462,9 +463,9 @@ mellow release-gate`}</code>
                 <div className={styles.statsCard}>
                   <div className={styles.statItem}>
                     <span className={styles.statNumber} style={{ color: '#fbbf24' }}>
-                      {LATEST_VERSION}
+                      Frozen 2.9
                     </span>
-                    <span className={styles.statLabel}>Latest</span>
+                    <span className={styles.statLabel}>Current Profile</span>
                   </div>
                   <div className={styles.statItem}>
                     <span className={styles.statNumber} style={{ color: '#4ade80' }}>

@@ -25,7 +25,7 @@ python -m mellowlang --version
 python -m mellowlang run examples\hello.mellow
 ```
 
-Native C is the default execution engine in MellowLang 2.9.2. Use `--engine=py` to force the Python VM.
+Native C is the default execution engine in MellowLang 2.9.5. Use `--engine=py` to force the Python VM.
 
 Optional features can be installed only when needed:
 

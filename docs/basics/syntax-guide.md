@@ -23,4 +23,4 @@ else:
     print("ok")
 ```
 
-Use this page as a quick scan. For the stable 2.9 language contract, see the Core Profile page.
+Use this page as a quick scan. For the current frozen language contract, see the Frozen Mellow 2.9 Core Profile page.
