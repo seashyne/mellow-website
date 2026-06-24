@@ -224,7 +224,7 @@ export default function Playground(): React.JSX.Element {
           <div className={styles.infoContent}>
             <strong>Runs locally:</strong> Code is executed by the Browser Core Runtime and is not uploaded.
             The browser runtime covers the Frozen Mellow 2.9 Core Profile and selected in-memory helpers.
-            Install MellowLang 2.9.5 for the native C VM, filesystem, network, sandbox profiles, and full host integrations.
+            Install MellowLang 2.9.6 for the native C VM, filesystem, network, sandbox profiles, and full host integrations.
           </div>
           <a
             href="/docs/intro/installation"

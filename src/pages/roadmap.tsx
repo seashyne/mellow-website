@@ -28,7 +28,7 @@ export default function Roadmap(): React.JSX.Element {
               <h3 style={{ margin: 0, fontWeight: 900 }}>Frozen Mellow 2.9 Core Profile</h3>
             </div>
             <p style={{ marginTop: '0.75rem', color: '#94a3b8', lineHeight: 1.7 }}>
-              Current frozen language contract. MellowLang <code>v2.9.5</code> is the current implementation release, with benchmark, security audit, release-gate, sandbox, and package integrity tooling.
+              Current frozen language contract. MellowLang <code>v2.9.6</code> is the current implementation release on the <code>dev/2.9.6</code> branch, with benchmark, security audit, release-gate, sandbox, and package integrity tooling.
             </p>
           </div>
 

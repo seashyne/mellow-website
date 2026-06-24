@@ -6,6 +6,7 @@ import Heading from '@theme/Heading';
 import styles from './release-pipeline.module.css';
 
 const SOURCE_REPO = 'https://github.com/seashyne/mellow-programming-language';
+const LATEST_BRANCH = 'https://github.com/seashyne/mellow-programming-language/tree/dev/2.9.6';
 const REGISTRY_URL = 'https://mellow-public-registry.jirayut-wh.workers.dev/packages';
 
 const STAGES = [
@@ -56,8 +57,8 @@ const TIMELINE = [
 
 const ARTIFACTS = [
   {
-    title: 'MellowLang 2.9.5',
-    text: 'Current implementation release for the Frozen 2.9 profile, including native C VM work and operational release tooling.',
+    title: 'MellowLang 2.9.6',
+    text: 'Current implementation release for the Frozen 2.9 profile on the dev/2.9.6 branch, including native C VM work and operational release tooling.',
   },
   {
     title: 'Public package registry',
@@ -103,7 +104,10 @@ export default function ReleasePipeline(): React.JSX.Element {
                 <Link className="button button--primary button--lg" to={SOURCE_REPO} target="_blank" rel="noreferrer">
                   Source repository
                 </Link>
-                <Link className="button button--secondary button--lg" to={REGISTRY_URL} target="_blank" rel="noreferrer">
+                <Link className="button button--secondary button--lg" to={LATEST_BRANCH} target="_blank" rel="noreferrer">
+                  Latest branch
+                </Link>
+                <Link className="button button--outline button--lg" to={REGISTRY_URL} target="_blank" rel="noreferrer">
                   Package registry
                 </Link>
                 <Link className="button button--outline button--lg" to="/playground">
@@ -114,7 +118,7 @@ export default function ReleasePipeline(): React.JSX.Element {
 
             <aside className={styles.summaryPanel} aria-label="Release status summary">
               <div className={styles.panelHead}>
-                <strong>MellowLang 2.9.5</strong>
+                <strong>MellowLang 2.9.6</strong>
                 <span className={styles.status}>Current</span>
               </div>
               <ul className={styles.checkList}>

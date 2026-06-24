@@ -8,7 +8,7 @@ title: Installation
 Clone the language source, then install from the checkout:
 
 ```powershell
-git clone https://github.com/seashyne/mellow-programming-language.git
+git clone -b dev/2.9.6 https://github.com/seashyne/mellow-programming-language.git
 cd mellow-programming-language
 python -m pip install -e .[dev]
 mellow --version
@@ -25,7 +25,7 @@ python -m mellowlang --version
 python -m mellowlang run examples\hello.mellow
 ```
 
-Native C is the default execution engine in MellowLang 2.9.5. Use `--engine=py` to force the Python VM.
+Native C is the default execution engine in MellowLang 2.9.6. Use `--engine=py` to force the Python VM.
 
 Optional features can be installed only when needed:
 

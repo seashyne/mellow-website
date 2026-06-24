@@ -7,7 +7,7 @@ title: Frozen Mellow 2.9 Core Profile
 
 The Frozen Mellow 2.9 Core Profile is the current portable language contract for Mellow.
 
-**Status: Frozen and current.** MellowLang 2.9.5 is the current implementation release of this profile.
+**Status: Frozen and current.** MellowLang 2.9.6 is the current implementation release of this profile.
 
 Patch releases in the 2.9 line may fix bugs, but they must not change the meaning of valid programs. New syntax belongs in Mellow 2.10 or later.
 

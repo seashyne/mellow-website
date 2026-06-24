@@ -5,7 +5,7 @@ title: CLI
 
 # CLI
 
-Stable commands in MellowLang 2.9.5:
+Stable commands in MellowLang 2.9.6:
 
 ```bash
 mellow --version

@@ -87,9 +87,10 @@ const USE_CASE_LIST: UseCaseItem[] = [
   },
 ];
 
-const LATEST_VERSION = 'v2.9.5';
+const LATEST_VERSION = 'v2.9.6';
 const CURRENT_PROFILE = 'Frozen Mellow 2.9 Core Profile';
 const SOURCE_REPO = 'https://github.com/seashyne/mellow-programming-language';
+const LATEST_BRANCH = 'https://github.com/seashyne/mellow-programming-language/tree/dev/2.9.6';
 const PACKAGE_REGISTRY = 'https://mellow-public-registry.jirayut-wh.workers.dev/packages';
 const PROOF_ITEMS: ProofItem[] = [
   { value: 'C VM', label: 'Default engine' },
@@ -123,8 +124,8 @@ const RELEASE_ITEMS: ReleaseItem[] = [
 const QUICK_STEPS = [
   {
     title: 'Clone the source',
-    text: 'Use the language repository as the source of truth for releases and examples.',
-    code: 'git clone https://github.com/seashyne/mellow-programming-language.git',
+    text: 'Use the latest language branch as the source of truth for releases and examples.',
+    code: 'git clone -b dev/2.9.6 https://github.com/seashyne/mellow-programming-language.git',
   },
   {
     title: 'Install locally',
@@ -217,7 +218,7 @@ export default function Home(): React.JSX.Element {
   return (
     <Layout
       title={`${siteConfig.title} - Sandbox Scripting Language`}
-      description="The Frozen Mellow 2.9 Core Profile is the current stable language contract, implemented by MellowLang 2.9.5."
+      description="The Frozen Mellow 2.9 Core Profile is the current stable language contract, implemented by MellowLang 2.9.6."
     >
       <header className={clsx('hero hero--dark', styles.heroBanner)}>
         <div className={styles.heroInner}>
@@ -235,7 +236,7 @@ export default function Home(): React.JSX.Element {
             </p>
 
             <p className={styles.heroDescription}>
-              The Frozen 2.9 Core Profile defines the portable language contract. MellowLang 2.9.5
+              The Frozen 2.9 Core Profile defines the portable language contract. MellowLang 2.9.6
               provides the current runtime, sandbox profiles, release gates, and explicit AI tool policy.
             </p>
 
@@ -250,11 +251,11 @@ export default function Home(): React.JSX.Element {
 
               <Link
                 className={clsx('button button--outline button--lg', styles.heroButton)}
-                to={SOURCE_REPO}
+                to={LATEST_BRANCH}
                 target="_blank"
                 rel="noreferrer"
               >
-                Source repo
+                Latest branch
               </Link>
 
               <Link
@@ -287,7 +288,7 @@ export default function Home(): React.JSX.Element {
                 </div>
               </div>
               <pre className={styles.heroTerminal}>
-                <code>{`git clone <language-source>
+                <code>{`git clone -b dev/2.9.6 <language-source>
 cd mellow-programming-language
 python -m pip install -e .[dev]
 mellow run examples/hello.mellow`}</code>

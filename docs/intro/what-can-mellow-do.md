@@ -5,7 +5,7 @@ title: What Can Mellow Do?
 
 # What Can Mellow Do
 
-MellowLang 2.9.5 implements the Frozen Mellow 2.9 Core Profile plus focused host helpers.
+MellowLang 2.9.6 implements the Frozen Mellow 2.9 Core Profile plus focused host helpers.
 
 ## Core Scripts
 
