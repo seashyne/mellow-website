@@ -55,6 +55,7 @@ const config: Config = {
         { type: 'docSidebar', sidebarId: 'tutorialSidebar', position: 'left', label: 'Docs' },
         { to: '/playground', label: 'Playground', position: 'left' },
         { to: '/roadmap', label: 'Roadmap', position: 'left' },
+        { to: '/release-pipeline', label: 'Release Pipeline', position: 'left' },
         { href: 'https://mellow-public-registry.jirayut-wh.workers.dev/packages', label: 'Registry', position: 'left' },
         { to: '/donate', label: 'Support', position: 'left' },
         { type: 'localeDropdown', position: 'right' },
@@ -70,6 +71,7 @@ const config: Config = {
             { label: 'Start here', to: '/docs/intro/what-is-mellow' },
             { label: 'Syntax', to: '/docs/language/syntax' },
             { label: 'Playground', to: '/playground' },
+            { label: 'Release Pipeline', to: '/release-pipeline' },
           ],
         },
         {

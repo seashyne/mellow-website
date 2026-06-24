@@ -354,6 +354,11 @@ mellow run examples/hello.mellow`}</code>
                 <ReleaseItem key={item.title} {...item} />
               ))}
             </div>
+            <div className={styles.releaseActions}>
+              <Link className="button button--secondary button--lg" to="/release-pipeline">
+                View release pipeline
+              </Link>
+            </div>
           </div>
         </section>
 
